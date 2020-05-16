@@ -12,7 +12,9 @@ public class MainApp {
         int headers = 5;
         int values = 9;
         AppData appData2 = new AppData(genData(headers,values));
+        long time = System.currentTimeMillis();
         appData2.save(Paths.get("data1.csv"));
+        System.out.println("time: " + (System.currentTimeMillis() - time));
         System.out.printf("appData2: created AppData from List(%d headers, %d values for each header) and saved it to data1.csv:\n%s\n", headers, values, appData2.toString());
 
         appData.read(Paths.get("data1.csv"));
@@ -35,9 +37,9 @@ public class MainApp {
         for (int i = 1; i < valuesCount + 1; ++i) {
             sb = new StringBuilder();
             for (int j = 1; j < headersCount; ++j) {
-                sb.append(100 * i).append(j).append(";");
+                sb.append(i).append(j).append(";");
             }
-            sb.append(100*i + headersCount);
+            sb.append(i).append(headersCount);
             data.add(sb.toString());
         }
         return data;
